@@ -120,75 +120,27 @@ body {
   background: #43434b; /* Color of the scrollbar thumb on hover */
 }
 
-::view-transition-group(root) {
-  animation-timing-function: var(--expo-in);
+::view-transition-old(root) {
+  animation: none;
+  z-index: -1;
+}
+.dark::view-transition-old(root) {
+  animation: none;
+  z-index: -1;
 }
 
 ::view-transition-new(root) {
-  mask: url('/assets/theL.gif') center / cover no-repeat;
-  animation: scale 1.5s;
+  animation: shutter 0.8s cubic-bezier(0.85, 0, 0.15, 1);
+}
+.dark::view-transition-new(root) {
+  animation: shutter 0.8s cubic-bezier(0.85, 0, 0.15, 1);
 }
 
-::view-transition-old(root),
-.dark::view-transition-old(root) {
-  animation: scale 1.5s;
-
-}
-
-@keyframes scale {
-  0% {
-    mask-size: 0;
+@keyframes shutter {
+  from {
+    clip-path: inset(50% 0 50% 0);
   }
-  10% {
-    mask-size: 40vmax;
-  }
-  90% {
-    mask-size: 40vmax;
-  }
-  100% {
-    mask-size: 2000vmax;
-  }
-}
-
-@media (max-width: 1440px) {
-  @keyframes scale {
-    10% {
-      mask-size: 55vmax; /* Larger size for smaller screens */
-    }
-    90% {
-      mask-size: 55vmax;
-    }
-    100% {
-      mask-size: 2000vmax;
-    }
-  }
-}
-
-
-@media (max-width: 1200px) {
-  @keyframes scale {
-    10% {
-      mask-size: 65vmax; /* Larger size for smaller screens */
-    }
-    90% {
-      mask-size: 65vmax;
-    }
-    100% {
-      mask-size: 2000vmax;
-    }
-  }
-}
-
-@media (max-width: 1024px) {
-  @keyframes scale {
-    10% {
-      mask-size: 75vmax; /* Larger size for smaller screens */
-    }
-    90% {
-      mask-size: 75vmax;
-    }
-    100% {
-      mask-size: 2000vmax;
-    }
+  to {
+    clip-path: inset(0 0 0 0);
   }
 }

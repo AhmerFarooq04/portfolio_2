@@ -30,8 +30,10 @@ const config: Config = {
         "dark-3": "#27272A",
         "dark-4": "#1F1F22",
         "dark-5": "#D4D4D8",
+        "purple-1": "#dbbaf8",
         red: "#ff0000",
         green: "#00ff00",
+
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {

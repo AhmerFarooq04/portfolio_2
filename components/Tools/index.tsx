@@ -8,29 +8,29 @@ const tools = [
     href: "/icons/vscode.png",
   },
   {
-    title: "v0.dev",
-    className: " p-1.5  ",
-    href: "/icons/v0.svg",
-  },
-  {
-    title: "Dia",
-    className: "p-2",
-    href: "/icons/dia.svg",
-  },
-  {
-   title: "Motion",
-   className: "p-2",
-   href: "/icons/motion.svg",
- },
-  {
     title: "Figma",
     className: "p-2",
     href: "/icons/figma_logo.svg",
   },
   {
-    title: "T3Chat",
-    className: "p-[5px] opacity-80",
-    href: "/icons/t3.svg",
+    title: "Python",
+    className: "p-2",
+    href: "/icons/python.svg",
+  },
+  {
+    title: "Power BI",
+    className: "p-2",
+    href: "/icons/powerbi.svg",
+  },
+  {
+    title: "Scikit-Learn",
+    className: "p-2",
+    href: "/icons/scikitlearn.svg",
+  },
+  {
+    title: "Mongo DB",
+    className: "p-2",
+    href: "/icons/mongodb.svg",
   },
 ];
 

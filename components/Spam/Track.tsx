@@ -2,12 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 
 const Track = () => {
-  const href = "https://open.spotify.com/track/4yJZP61jBhVTesHBZ0gpQn"
+  const href = "https://open.spotify.com/track/4lcQHckNMeUkM8jx67j28G"
   return (
     <>
       <div className=" sm:col-start-2 sm:col-end-4  sm:row-start-4 sm:row-end-7 border-dark-3 dark:border-dark-5 rounded-3xl bg-transparent group relative">
         <Image
-          src={`/assets/fox.png`}
+          src={`/assets/Arooj.jpg`}
           alt="track"
           width={1024}
           height={1024}
@@ -28,10 +28,10 @@ const Track = () => {
       </div >
 
       <div className=" sm:col-start-2 sm:col-end-4 sm:row-start-7 sm:row-end-8 p-1">
-        <Link href={href} className="font-bold text-lg font-glancyr leading-6 text-white dark:text-dark-4">Fox on the Run</Link>
+        <Link href={href} className="font-bold text-lg font-glancyr leading-6 text-white dark:text-dark-4">Mohabbat</Link>
         <div className="flex justify-between text-xs text-zinc-500 pointer-events-none">
-          <p>By: Sweet</p>
-          <p className="font-mono">2016</p>
+          <p>By: Arooj Aftab</p>
+          <p className="font-mono">2022</p>
         </div>
       </div>
     </>

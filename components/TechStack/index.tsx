@@ -1,4 +1,4 @@
-import { backEnd, currentlyLearning, frontEnd, services } from "@/constants";
+import { backEnd, currentlyLearning, frontEnd, databases, devOps, dataStack } from "@/constants";
 import React from "react";
 import Badge from "../ui/badge";
 
@@ -15,8 +15,8 @@ const Techstack = () => {
           <span className="absolute bottom-0 left-0 w-0 h-1 bg-white dark:bg-dark-4 rounded-full transition-all duration-500 group-hover:w-[80%] group-hover:mx-auto "></span>
         </h1>{" "}
       </div>
-      <div className="relative mt-2 w-full grid grid-cols-1 text-zinc-200/80 overflow-y-auto p-2 gap-5 ">
-        <div className="  flex flex-col transition-all duration-500 rounded-lg gap-1  p-1  text-md">
+      <div className="relative mt-2 w-full grid grid-cols-1 text-zinc-200/80 overflow-y-auto p-2 gap-5 no-scrollbar">
+        <div className=" flex flex-col transition-all duration-500 rounded-lg gap-1 p-1 text-md">
           <p className="text-white dark:text-dark-1 text-sm">Frontend:</p>
           <div className=" flex flex-wrap gap-1.5">
             {frontEnd.map((item) => (
@@ -24,28 +24,34 @@ const Techstack = () => {
             ))}
           </div>
         </div>
-        <div className=" flex flex-col transition-all duration-500 rounded-lg gap-1  p-1 text-md">
-          <p className="text-white dark:text-dark-1 text-sm">Backend:</p>
+        <div className=" flex flex-col transition-all duration-500 rounded-lg gap-1 p-1 text-md">
+          <p className="text-white dark:text-dark-1 text-sm">Backend & APIs:</p>
           <div className=" flex flex-wrap gap-1.5">
             {backEnd.map((item) => (
               <Badge key={item}>{item}</Badge>
             ))}
           </div>
         </div>
-        <div className=" flex flex-col transition-all duration-500 rounded-lg gap-1  p-1 text-md">
-          <p className="text-white dark:text-dark-1 text-sm">Db & Services:</p>
+        <div className=" flex flex-col transition-all duration-500 rounded-lg gap-1 p-1 text-md">
+          <p className="text-white dark:text-dark-1 text-sm">Databases & ORMs:</p>
           <div className=" flex flex-wrap gap-1.5">
-            {services.map((item) => (
+            {databases.map((item) => (
               <Badge key={item}>{item}</Badge>
             ))}
           </div>
         </div>
-        <div className=" flex flex-col transition-all duration-500 rounded-lg gap-1  p-1 text-md">
-          <p className="text-white dark:text-dark-1 text-sm">
-            Currently Learning:
-          </p>
+        <div className=" flex flex-col transition-all duration-500 rounded-lg gap-1 p-1 text-md">
+          <p className="text-white dark:text-dark-1 text-sm">Data & AI:</p>
           <div className=" flex flex-wrap gap-1.5">
-            {currentlyLearning.map((item) => (
+            {dataStack.map((item) => (
+              <Badge key={item}>{item}</Badge>
+            ))}
+          </div>
+        </div>
+        <div className=" flex flex-col transition-all duration-500 rounded-lg gap-1 p-1 text-md">
+          <p className="text-white dark:text-dark-1 text-sm">DevOps & Cloud:</p>
+          <div className=" flex flex-wrap gap-1.5">
+            {devOps.map((item) => (
               <Badge key={item}>{item}</Badge>
             ))}
           </div>

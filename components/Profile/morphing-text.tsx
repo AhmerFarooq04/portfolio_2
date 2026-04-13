@@ -94,17 +94,23 @@ interface MorphingTextProps {
 
 const Texts: React.FC<Pick<MorphingTextProps, "texts">> = ({ texts }) => {
   const { text1Ref, text2Ref } = useMorphingText(texts);
+  
+  // Find longest string to set a stable width, preventing jitter and wrapping
+  const longestText = texts.reduce((a, b) => (a.length > b.length ? a : b), "");
+
   return (
-    <>
+    <span className="relative inline-block text-left">
+      {/* Invisible placeholder dictates outer width */}
+      <span className="invisible whitespace-nowrap block">{longestText}</span>
       <span
-        className=" w-full inline-block inset-x-0 top-0 m-auto"
+        className="absolute inline-block left-0 top-0 whitespace-nowrap"
         ref={text1Ref}
       />
       <span
-        className="absolute w-full inline-block inset-x-0 top-0 m-auto"
+        className="absolute inline-block left-0 top-0 whitespace-nowrap"
         ref={text2Ref}
       />
-    </>
+    </span>
   );
 };
 
@@ -128,7 +134,7 @@ const SvgFilters: React.FC = () => (
 const MorphingText: React.FC<MorphingTextProps> = ({ texts, className }) => (
   <div
     className={cn(
-      "[filter:url(#threshold)_blur(0.6px)] w-full text-lg leading-none text-center relative font-sans font-bold max-w-screen-md mx-auto",
+      "[filter:url(#threshold)_blur(0.6px)] w-full text-lg leading-none text-left relative font-sans font-bold max-w-screen-md mx-auto",
       className,
     )}
   >

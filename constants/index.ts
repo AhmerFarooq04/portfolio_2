@@ -11,49 +11,74 @@ export const frontEnd = [
   "Tanstack Query",
 ];
 
-export const backEnd = ["Nodejs", "Honojs", "Expressjs", "NPM"];
-
-export const services = [
-  "Cloudflare Workers",
-  "Docker",
-  "Appwrite",
-  "Supabase",
-  "Prisma ORM",
-  "Postman",
-  "Postgres",
-  "MongoDB",
+export const backEnd = [
+  "Nodejs",
+  "Expressjs",
+  "Honojs",
+  "REST APIs",
+  "GraphQL",
 ];
 
-export const currentlyLearning = ["Rust"];
+export const databases = [
+  "MongoDB",
+  "Postgres",
+  "Prisma ORM",
+  "Mongoose",
+  "Supabase",
+  "Appwrite"
+];
+
+export const devOps = [
+  "Vercel",
+  "Docker",
+  "Cloudflare Workers",
+  "AWS",
+  "Postman",
+  "NPM",
+  "Git/GitHub"
+];
+
+export const currentlyLearning = ["Rust", "Go"];
+
+export const dataStack = [
+  "Python",
+  "Power BI",
+  "Tableau",
+  "Scikit-Learn",
+  "Pandas",
+  "NumPy",
+  "TensorFlow",
+  "PyTorch",
+  "Jupyter"
+];
 
 export const Socials = [
   {
     name: "github",
-    href: "https://github.com/zzzzshawn",
+    href: "https://github.com/AhmerFarooq04",
     logo: "/icons/github.svg",
     className: "dark:invert",
   },
   {
-    name: "x.com",
-    href: "https://x.com/zzzzshawn",
-    logo: "/icons/x.svg",
-    className: "dark:invert p-1",
-  },
-  {
+    name: "Resume",
+    href: "/resume.pdf",
+    logo: "/icons/resume.svg",
+    className: "dark:invert",
+  }, {
     name: "gmail",
-    href: "mailto:shawndsilva.mail@gmail.com",
+    href: "mailto:mfarooq3@ualberta.ca",
     logo: "/icons/gmail.svg",
     className: "",
   },
   {
     name: "discord",
-    href: "https://discordapp.com/users/816919689350742026",
+    href: "https://discordapp.com/users/705751982366785536",
     logo: "/icons/discord.svg",
     className: "dark:invert py-2",
   },
   {
     name: "linkedIn",
-    href: "https://www.linkedin.com/in/zzshawndsilva/",
+    href: "https://www.linkedin.com/in/ahmer-farooq-1b8282249/",
     logo: "/icons/linkdin.svg",
     className: "dark:invert",
   },

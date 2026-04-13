@@ -22,7 +22,7 @@ const features = [
     animate: { opacity: 1, x: 0 },
     transition: { duration: 1 },
     className:
-      "sm:col-start-1 sm:col-end-3 sm:row-start-1 sm:row-end-5 z-[8] max-sm:h-max relative !border-dark-3 dark:!border-0 [box-shadow:0_0px_60px_-25px_#ffffff1f_inset] dark:[box-shadow:0px_0px_40px_5px_#c6c6c635_inset] dark:p-1 p-0.5 dark:bg-white/30",
+      "sm:col-start-1 sm:col-end-3 sm:row-start-1 sm:row-end-6 z-[8] max-sm:h-max relative !border-dark-3 dark:!border-0 [box-shadow:0_0px_60px_-25px_#ffffff1f_inset] dark:[box-shadow:0px_0px_40px_5px_#c6c6c635_inset] dark:p-1 p-0.5 dark:bg-white/30",
     background: <Techstack />,
   },
   {

@@ -29,10 +29,10 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Shawn.",
+  title: "Ahmer",
   description: "I dont even know man",
   metadataBase: new URL('https://www.zzzzshawn.cloud/'),
-  authors: [{ name: "Shawn." }],
+  authors: [{ name: "Ahmer." }],
   keywords: [
     "portfolio",
     "portfolio website",
@@ -53,8 +53,8 @@ export const metadata: Metadata = {
     "interactive portfolio website",
     "minimal interactive portfolio"
   ],
-  creator: "Shawn.",
-  publisher: "Shawn",
+  creator: "Ahmer",
+  publisher: "Ahmer",
   category: "Creative Portfolio",
   robots: {
     index: true,
