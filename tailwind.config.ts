@@ -33,6 +33,10 @@ const config: Config = {
         "purple-1": "#dbbaf8",
         red: "#ff0000",
         green: "#00ff00",
+        technoGreen: {
+          500: "#22c55e",
+          600: "#16a34a",
+        },
 
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",

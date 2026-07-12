@@ -4,6 +4,7 @@ import Profile from "../Profile";
 import Techstack from "../TechStack";
 import Links from "../Links";
 import Projects from "../Projects";
+import Labs from "../Labs";
 import Spam from "../Spam";
 import Link from "next/link";
 import Footer from "../Footer";
@@ -51,6 +52,19 @@ const features = [
     background: (
       <Link href="/projects">
         <Projects />
+      </Link>
+    ),
+  },
+  {
+    initial: { scale: 1, opacity: 0, x: 50 },
+    animate: { opacity: 1, x: 0 },
+    transition: { opacity: { duration: 1 }, x: { duration: 1 } },
+    whileHover: { scale: 0.95, transition: { duration: 0.15 } },
+    className:
+      "row-start-5 sm:col-start-7 sm:col-end-9 sm:row-start-4 sm:row-end-6 dark:p-1 p-0 dark:bg-white bg-technoGreen-600 border-none relative hover:scale-125 z-[8] max-sm:h-max mx-auto overflow-hidden",
+    background: (
+      <Link href="/labs">
+        <Labs />
       </Link>
     ),
   },
