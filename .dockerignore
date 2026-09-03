@@ -1,0 +1,11 @@
+node_modules
+.next
+.git
+.gitignore
+.vscode
+README.md
+*.md
+.env
+.env.*
+npm-debug.log*
+pnpm-lock.yaml
