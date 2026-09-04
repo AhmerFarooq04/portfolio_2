@@ -35,7 +35,7 @@ const config: Config = {
         green: "#00ff00",
         technoGreen: {
           500: "#22c55e",
-          600: "#16a34a",
+          600: "#159447",
         },
 
         background: "hsl(var(--background))",

@@ -1,4 +1,4 @@
-import { backEnd, currentlyLearning, frontEnd, databases, devOps, dataStack } from "@/constants";
+import { backEnd, frontEnd, databases, devOps, dataStack } from "@/constants";
 import React from "react";
 import Badge from "../ui/badge";
 
@@ -16,6 +16,14 @@ const Techstack = () => {
         </h1>{" "}
       </div>
       <div className="relative mt-2 w-full grid grid-cols-1 text-zinc-200/80 overflow-y-auto p-2 gap-5 no-scrollbar">
+        <div className=" flex flex-col transition-all duration-500 rounded-lg gap-1 p-1 text-md">
+          <p className="text-white dark:text-dark-1 text-sm">Data & AI:</p>
+          <div className=" flex flex-wrap gap-1.5">
+            {dataStack.map((item) => (
+              <Badge key={item}>{item}</Badge>
+            ))}
+          </div>
+        </div>
         <div className=" flex flex-col transition-all duration-500 rounded-lg gap-1 p-1 text-md">
           <p className="text-white dark:text-dark-1 text-sm">Frontend:</p>
           <div className=" flex flex-wrap gap-1.5">
@@ -36,14 +44,6 @@ const Techstack = () => {
           <p className="text-white dark:text-dark-1 text-sm">Databases & ORMs:</p>
           <div className=" flex flex-wrap gap-1.5">
             {databases.map((item) => (
-              <Badge key={item}>{item}</Badge>
-            ))}
-          </div>
-        </div>
-        <div className=" flex flex-col transition-all duration-500 rounded-lg gap-1 p-1 text-md">
-          <p className="text-white dark:text-dark-1 text-sm">Data & AI:</p>
-          <div className=" flex flex-wrap gap-1.5">
-            {dataStack.map((item) => (
               <Badge key={item}>{item}</Badge>
             ))}
           </div>

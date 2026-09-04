@@ -14,7 +14,6 @@ export const frontEnd = [
 export const backEnd = [
   "Nodejs",
   "Expressjs",
-  "Honojs",
   "REST APIs",
   "GraphQL",
 ];
@@ -22,10 +21,8 @@ export const backEnd = [
 export const databases = [
   "MongoDB",
   "Postgres",
-  "Prisma ORM",
   "Mongoose",
   "Supabase",
-  "Appwrite"
 ];
 
 export const devOps = [
