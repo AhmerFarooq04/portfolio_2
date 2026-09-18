@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import jobRadarImage from "@/public/assets/jobradar.png";
 import { Carousel, Card } from "@/components/ui/apple-cards-carousel";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
@@ -7,7 +8,7 @@ import { ArrowLeft } from "lucide-react";
 
 export default function ProjectDisplay() {
   const cards = data.map((card, index) => (
-    <Card key={card.src} card={card} index={index} />
+    <Card key={card.title} card={card} index={index} />
   ));
 
   const router = useRouter();
@@ -36,7 +37,7 @@ const data = [
   {
     category: "AI & Job Search Automation",
     title: "Job Radar",
-    src: "/assets/jobradar.png",
+    src: jobRadarImage,
     github: "https://github.com/AhmerFarooq04/alberta-job-radar",
     tags: ["Python", "Gemini API", "SQLite", "FastAPI", "React", "TypeScript"],
     description:

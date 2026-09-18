@@ -20,7 +20,7 @@ interface CarouselProps {
 }
 
 type Card = {
-  src: string;
+  src: ImageProps["src"];
   title: string;
   category: string;
   link?: string;
