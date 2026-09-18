@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import proxmoxImage from "@/public/assets/proxmox.png";
 import { Carousel, Card } from "@/components/ui/apple-cards-carousel";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
@@ -7,7 +8,7 @@ import { ArrowLeft } from "lucide-react";
 
 export default function LabDisplay() {
   const cards = data.map((card, index) => (
-    <Card key={card.src} card={card} index={index} />
+    <Card key={card.title} card={card} index={index} />
   ));
 
   const router = useRouter();
@@ -33,7 +34,7 @@ const data = [
   {
     category: "Infrastructure & Self-Hosting",
     title: "Proxmox Homelab",
-    src: "/assets/proxmox.png",
+    src: proxmoxImage,
     tags: ["Proxmox VE", "Linux", "Docker", "Tailscale", "GHCR", "systemd"],
     description:
       "A two-node Proxmox VE homelab for virtual machines, Linux containers, self-hosted applications, and secure remote access. It runs Docker workloads and an automatically updated portfolio, with a second node being converted into a worker for long-running Python, data science, and machine-learning jobs.",
