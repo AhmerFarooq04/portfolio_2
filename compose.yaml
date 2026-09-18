@@ -1,0 +1,8 @@
+services:
+  portfolio:
+    image: ghcr.io/ahmerfarooq04/portfolio_2:latest
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      UNSPLASH_ACCESS_KEY: ${UNSPLASH_ACCESS_KEY:?Set UNSPLASH_ACCESS_KEY in .env}

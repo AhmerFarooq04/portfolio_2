@@ -8,6 +8,7 @@ interface ImageObject {
   };
   user: {
     name: string;
+    profile: string;
   };
   created_at: string;
   alt_description: string;
@@ -20,20 +21,7 @@ const Nasa = () => {
 
   const fetchImage = async () => {
     try {
-      const apiKey = process.env.NEXT_PUBLIC_UNSPLASH_ACCESS_KEY;
-
-      if (!apiKey) {
-        setHasError(true);
-        setIsLoading(false);
-        return;
-      }
-
-      // 1. Added 'dark-purple-aesthetic' and 'nebula' for better results
-      // 2. Added '&color=purple' to the URL to force the color palette
-      const response = await fetch(
-        `https://api.unsplash.com/photos/random?query=dark-purple-aesthetic,nebula,night-sky&color=purple&client_id=${apiKey}`,
-        { method: "GET" }
-      );
+      const response = await fetch("/api/space-image");
 
       if (!response.ok) {
         throw new Error("Failed to fetch");
@@ -70,6 +58,7 @@ const Nasa = () => {
               alt={image?.alt_description || "Purple Aesthetic Image"}
               width={1024}
               height={1024}
+              onError={() => setHasError(true)}
               unoptimized
               className="object-cover size-full rounded-3xl shadow-[0_0_20px_rgba(168,85,247,0.05)]"
             />
@@ -82,12 +71,16 @@ const Nasa = () => {
           <div className="p-0 flex flex-col justify-start h-full px-1 items-end overflow-hidden">
             <p className="font-mono text-xs line-clamp-1 text-zinc-200 dark:text-dark-4">
               <span className="text-[#dbbaf8]">
-                via Unsplash:
+                {hasError ? "Local fallback" : "via Unsplash:"}
               </span>{" "}
-              {hasError ? "2026-04-12" : image?.created_at.split("T")[0]}
+              {hasError ? "" : image?.created_at.split("T")[0]}
             </p>
             <p className="font-mono text-[0.6rem] text-end line-clamp-1 text-wrap text-zinc-300 dark:text-dark-4">
-              {hasError ? "The Sword of Orion" : `Shot by ${image?.user.name}`}
+              {hasError ? "The Sword of Orion" : (
+                <a href={`${image?.user.profile}?utm_source=ahmer_portfolio&utm_medium=referral`} target="_blank" rel="noopener noreferrer" className="hover:underline">
+                  Shot by {image?.user.name} on Unsplash
+                </a>
+              )}
             </p>
           </div>
         )}

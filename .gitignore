@@ -25,9 +25,10 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# local env files
+# Environment files may contain secrets; only commit the blank template.
 .env
-.env*.local
+.env.*
+!.env.example
 
 # vercel
 .vercel
