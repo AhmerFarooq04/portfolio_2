@@ -30,15 +30,16 @@ const spaceGrotesk = Space_Grotesk({
 
 export const metadata: Metadata = {
   title: "Ahmer",
-  description: "I dont even know man",
-  metadataBase: new URL('https://www.zzzzshawn.cloud/'),
-  authors: [{ name: "Ahmer." }],
+  description: "Is sysiphus happy yet?",
+  metadataBase: new URL('https://ahm3r.com/'),
+  authors: [{ name: "Ahmer" }],
   keywords: [
     "portfolio",
     "portfolio website",
     "minimal portfolio",
     "animated portfolio",
-    "sexy portfolio design",
+    "Ahmer",
+    "Ahmer Farooq",
     "Framer Motion portfolio",
     "minimalist web portfolio",
     "animated portfolio website",
@@ -66,29 +67,28 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
+    siteName: "Ahmer",
     locale: "en_US",
-    url: "https://www.zzzzshawn.cloud/",
-    title: "Shawn.",
-    description: "I dont even know man",
+    url: "https://ahm3r.com/",
+    title: "Ahmer",
+    description: "Is sysiphus happy yet?",
     images: [
       {
         url: "/assets/shawn.png",
         width: 1200,
         height: 630,
-        alt: "Shawn.",
+        alt: "Ahmer",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Shawn.",
-    description: "I dont even know man",
+    title: "Ahmer",
+    description: "Is sysiphus happy yet?",
     images: ["/assets/shawn.png"],
-    creator: "@zzzzshawn",
-    site: "@zzzzshawn",
   },
   alternates: {
-    canonical: "https://www.zzzzshawn.cloud",
+    canonical: "https://ahm3r.com",
   },
   icons: [
     { rel: "icon", url: "/favicon.ico" },
