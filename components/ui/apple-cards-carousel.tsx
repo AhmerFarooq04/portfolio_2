@@ -4,19 +4,18 @@ import React, {
   useRef,
   useState,
   createContext,
-  useContext,
+  useId,
 } from "react";
 import { IconArrowNarrowLeft, IconArrowNarrowRight } from "@tabler/icons-react";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import Image, { ImageProps } from "next/image";
-import { useOutsideClick } from "@/hooks/use-outside-click";
 import Link from "next/link";
 import { ArrowTopRightIcon, GitHubLogoIcon } from "@radix-ui/react-icons";
-import { FlickeringGrid } from "../magicui/flickering-grid";
+import { X } from "lucide-react";
 
 interface CarouselProps {
-  items: JSX.Element[];
+  items: React.ReactElement[];
   initialScroll?: number;
 }
 
@@ -24,10 +23,11 @@ type Card = {
   src: string;
   title: string;
   category: string;
-  link: string;
+  link?: string;
   github?: string;
   tags?: string[];
-  content: React.ReactNode;
+  description: string;
+  details: { title: string; text: string }[];
 };
 
 export const CarouselContext = createContext<{
@@ -123,7 +123,6 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
                     duration: 0.5,
                     delay: 0.2 * index,
                     ease: "easeOut",
-                    once: true,
                   },
                 }}
                 key={"card" + index}
@@ -165,94 +164,97 @@ export const Card = ({
   layout?: boolean;
 }) => {
   const [open, setOpen] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { onCardClose } = useContext(CarouselContext);
-
-  const handleClose = React.useCallback(() => {
-    setOpen(false);
-    onCardClose(index);
-  }, [index, onCardClose]);
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const titleId = useId();
 
   useEffect(() => {
-    function onKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") {
-        handleClose();
-      }
-    }
-
-    if (open) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
-
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, [open, handleClose]);
-
-  useOutsideClick(containerRef, handleClose);
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
+    if (!open) return;
+    const dialog = dialogRef.current;
+    const previousOverflow = document.body.style.overflow;
+    dialog?.showModal();
+    document.body.style.overflow = "hidden";
+    return () => {
+      dialog?.close();
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [open]);
 
   return (
-    <motion.button
-      layoutId={layout ? `card-${card.title}` : undefined}
-      onClick={handleOpen}
-      className="rounded-3xl h-[20rem] z-30 w-64 md:h-[35rem] md:w-[26rem] overflow-hidden flex flex-col items-start justify-start relative transition-all  duration-500 group p-1.5  bg-white/5 dark:bg-white/30"
-    >
-      <div className="size-full rounded-2xl bg-dark-1 dark:bg-white/80 relative overflow-hidden">
-        <FlickeringGrid width={1000} height={2000} className="size-full absolute -z-0" />
-        {/* <div className="absolute bg-[radial-gradient(circle_400px_at_center,_var(--tw-gradient-stops))] from-white -top-[40%]  to-white/0 w-full h-[110%] -z-0"></div> */}
-
-        {/* <div className="absolute h-full top-0 inset-x-0 bg-gradient-to-b from-black/50 via-transparent to-transparent z-30 pointer-events-none" /> */}
-        <Link href={card.link} target="_blank">
-          <div className="relative z-10 px-8 pt-8 ">
-            <motion.p
-              layoutId={layout ? `category-${card.category}` : undefined}
-              className="  text-sm md:text-base font-medium max-sm:font-bold font-glancyr text-left"
-            >
-              {card.category}
-            </motion.p>
-            <motion.p
-              layoutId={layout ? `title-${card.title}` : undefined}
-              className=" text-xl md:text-3xl font-semibold max-w-xs text-left [text-wrap:balance] font-glancyr700 mt-2 max-sm:font-bold"
-            >
-              {card.title}
-            </motion.p>
+    <>
+      <motion.button
+        type="button"
+        layoutId={layout ? `card-${index}-${card.title}` : undefined}
+        onClick={() => setOpen(true)}
+        aria-haspopup="dialog"
+        aria-label={`Explore ${card.title}`}
+        className="group relative flex h-[20rem] w-64 overflow-hidden rounded-3xl bg-white/10 p-1.5 text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-purple-1 md:h-[35rem] md:w-[26rem]"
+      >
+        <div className="relative size-full overflow-hidden rounded-2xl bg-dark-1">
+          <BlurImage src={card.src} alt={card.title} fill sizes="(max-width: 767px) 256px, 416px" className="object-cover transition-transform duration-500 group-hover:scale-105" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/10 to-black/90" />
+          <div className="relative p-6 text-white md:p-8">
+            <p className="font-glancyr text-sm">{card.category}</p>
+            <h2 className="mt-2 font-glancyr700 text-2xl md:text-4xl">{card.title}</h2>
           </div>
-        </Link>
-          <Link href={card.link} target="_blank">
-            <BlurImage
-              src={card.src}
-              alt={card.title}
-              fill
-              className="object-cover absolute inset-0 size-full z-0"
-            />
-          </Link>
-        <div className="z-[30] absolute bottom-7  flex w-full items-center justify-start flex-wrap gap-2 px-5 max-sm:px-3">
-          {card.tags &&
-            card.tags?.length > 0 &&
-            card.tags.map((tag, idx) => (
-              <div
-                key={idx}
-                className="bg-white/70 text-black flex items-center justify-center px-2 rounded-lg font-bold border border-dark-4 max-sm:text-xs "
-              >
-                {tag}
-              </div>
-            ))}
-        </div>
-        {card.github && (
-          <Link href={card.github} target="_blank" className="z-30  absolute left-8 top-28">
-            <div className="w-max px-3 py-1 rounded-full my-2 text-dark-1 bg-white font-bold border border-dark-4 text-lg flex items-center justify-center gap-1 -translate-x-28 group-hover:translate-x-0 opacity-0 scale-[0.2] group-hover:scale-100 group-hover:opacity-100 transition-all duration-500">
-              <GitHubLogoIcon className="size-8" />{" "}
-              <ArrowTopRightIcon className="hover:rotate-45 size-7 transition-all" />
+          <div className="absolute inset-x-0 bottom-0 p-5 text-white md:p-8">
+            <div className="mb-5 flex flex-wrap gap-2">
+              {card.tags?.map((tag) => (
+                <span key={tag} className="rounded-lg bg-white/80 px-2 py-1 text-xs font-semibold text-dark-1">{tag}</span>
+              ))}
             </div>
-          </Link>
+            <span className="flex items-center gap-2 text-sm font-semibold">Explore project <ArrowTopRightIcon className="size-5" /></span>
+          </div>
+        </div>
+      </motion.button>
+
+      <dialog
+        ref={dialogRef}
+        aria-labelledby={titleId}
+        onCancel={() => setOpen(false)}
+        onClose={() => setOpen(false)}
+        onClick={(event) => {
+          if (event.target === event.currentTarget) setOpen(false);
+        }}
+        className="fixed inset-0 m-auto max-h-[90dvh] w-[calc(100%_-_2rem)] max-w-6xl overflow-y-auto rounded-[2rem] border border-white/20 bg-dark-1 p-0 text-white shadow-2xl backdrop:bg-black/75 backdrop:backdrop-blur-sm"
+      >
+        {open && (
+          <div className="p-4 md:p-7">
+            <div className="mb-5 flex items-center justify-between gap-4">
+              <p className="font-glancyr text-sm text-zinc-400">{card.category} / Project overview</p>
+              <button type="button" autoFocus onClick={() => setOpen(false)} aria-label="Close project details" className="flex size-11 shrink-0 items-center justify-center rounded-full bg-white/10 transition hover:bg-white/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-purple-1">
+                <X className="size-5" />
+              </button>
+            </div>
+            <div className="grid gap-4 md:grid-cols-2">
+              <div className="relative min-h-64 overflow-hidden rounded-3xl border border-white/10 bg-zinc-900 md:min-h-96">
+                <BlurImage src={card.src} alt={`${card.title} preview`} fill sizes="(max-width: 767px) 90vw, 560px" className="object-contain p-3" />
+              </div>
+              <section className="flex flex-col rounded-3xl bg-purple-1 p-6 text-dark-1 md:p-8">
+                <p className="text-xs font-semibold uppercase tracking-widest">About the project</p>
+                <h2 id={titleId} className="mt-4 font-glancyr700 text-3xl md:text-5xl">{card.title}</h2>
+                <p className="mt-5 leading-relaxed">{card.description}</p>
+                <div className="mb-6 mt-5 flex flex-wrap gap-2">
+                  {card.tags?.map((tag) => <span key={tag} className="rounded-full border border-black/20 px-3 py-1 text-xs">{tag}</span>)}
+                </div>
+                <div className="mt-auto flex flex-wrap gap-3">
+                  {card.link && <Link href={card.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-dark-1 px-4 py-3 text-sm text-white">Visit project <ArrowTopRightIcon className="size-4" /></Link>}
+                  {card.github && <Link href={card.github} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-black/25 px-4 py-3 text-sm"><GitHubLogoIcon className="size-4" /> GitHub</Link>}
+                </div>
+              </section>
+              <div className="grid gap-4 md:col-span-2 md:grid-cols-3">
+                {card.details.map((detail, detailIndex) => (
+                  <section key={detail.title} className="rounded-3xl border border-white/10 bg-zinc-900 p-6 md:p-8">
+                    <p className="mb-6 font-mono text-xs text-purple-1">{String(detailIndex + 1).padStart(2, "0")}</p>
+                    <h3 className="font-glancyr700 text-xl">{detail.title}</h3>
+                    <p className="mt-3 text-sm leading-relaxed text-zinc-400">{detail.text}</p>
+                  </section>
+                ))}
+              </div>
+            </div>
+          </div>
         )}
-      </div>
-    </motion.button>
+      </dialog>
+    </>
   );
 };
 
