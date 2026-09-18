@@ -71,7 +71,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://ahm3r.com/",
     title: "Ahmer",
-    description: "Is sysiphus happy yet?",
+    description: "Is sisyphus happy yet?",
     images: [
       {
         url: "/assets/shawn.png",
@@ -84,7 +84,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Ahmer",
-    description: "Is sysiphus happy yet?",
+    description: "Is sisyphus happy yet?",
     images: ["/assets/shawn.png"],
   },
   alternates: {
