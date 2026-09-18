@@ -1,5 +1,6 @@
 
 import type { Metadata } from "next";
+import socialPreview from "@/public/assets/shawn.png";
 import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme/theme-provider";
@@ -74,9 +75,9 @@ export const metadata: Metadata = {
     description: "Is sisyphus happy yet?",
     images: [
       {
-        url: "/assets/shawn.png",
-        width: 1200,
-        height: 630,
+        url: socialPreview.src,
+        width: socialPreview.width,
+        height: socialPreview.height,
         alt: "Ahmer",
       },
     ],
@@ -85,7 +86,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Ahmer",
     description: "Is sisyphus happy yet?",
-    images: ["/assets/shawn.png"],
+    images: [socialPreview.src],
   },
   alternates: {
     canonical: "https://ahm3r.com",
