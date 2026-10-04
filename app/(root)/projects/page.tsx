@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import jobRadarImage from "@/public/assets/jobradar.png";
+import candlesticksImage from "@/public/assets/candlesticks.png";
 import { Carousel, Card } from "@/components/ui/apple-cards-carousel";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
@@ -66,6 +67,28 @@ const data = [
       {
         title: "Deployment & next steps",
         text: "Deployment files are supplied for Docker, Docker Compose, and Nginx. A systemd timer and Bash scripts support daily execution, with flock preventing overlapping runs. The planned host is a Linux VM on Proxmox; server deployment has not yet been verified. Discord, WhatsApp, and generic scraping are unused, and report.py has no established active role.",
+      },
+    ],
+  },
+  {
+    category: "Options & Volatility Analysis",
+    title: "Volatility Advantage",
+    src: candlesticksImage,
+    tags: ["Python", "Tkinter", "Matplotlib", "Options Analysis"],
+    description:
+      "Volatility Advantage scans stocks before earnings to find options that may price in bigger moves than recent trading suggests. The strategy aims to sell that extra uncertainty and benefit as it fades after earnings, using calendar spreads that pair options with different expiry dates to help manage risk.",
+    details: [
+      {
+        title: "Scan & explore",
+        text: "Multi-threaded earnings scans with optional proxy rotation populate a sortable, filterable Tkinter table with colour-coded results and CSV export. Double-click a row to view up to a year of candlestick charts in Matplotlib.",
+      },
+      {
+        title: "Compare volatility",
+        text: "Measures 30-day realised volatility using Yang-Zhang or a fallback method, then compares it with implied volatility from at-the-money calls and puts. A simple term structure estimates volatility across expiry dates.",
+      },
+      {
+        title: "Rank opportunities",
+        text: "Recommended requires average daily volume of at least 1.5 million shares, IV30/RV30 of at least 1.25, and a term slope of -0.00406 or lower. Partial matches are marked Consider; failed key criteria or missing data are marked Avoid.",
       },
     ],
   },
